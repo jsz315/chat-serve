@@ -23,7 +23,7 @@
 //     ws.close();
 // }, 3000);
 
-var SocketServer = require('ws').Server;
+// var SocketServer = require('ws').Server;
 
 // var ws = new SocketServer({port: 5566});
 
