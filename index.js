@@ -85,8 +85,10 @@ io.on('connection', socket=>{
         console.log("type = " + Message.TYPE_LOGIN);
         console.log(obj);
         socket.nickName = obj.nickName;
+        socket.avatarUrl = obj.avatarUrl;
         io.emit(Message.TYPE_LOGIN, {
             nickName: socket.nickName,
+            avatarUrl: socket.avatarUrl,
             id: socket.id
         })
     })
@@ -99,6 +101,13 @@ io.on('connection', socket=>{
         }
         else{
             room.send(Message.TYPE_WAIT_MATCH, room.getInfo());
+        }
+    })
+
+    socket.on(Message.TYPE_LIST_ID, obj=>{
+        var room = RoomManager.getInstance().getRoomBySocket(socket);
+        if(room){
+            room.send(Message.TYPE_LIST_ID, Client.getListId(obj.allSize, obj.pkSize));
         }
     })
 
