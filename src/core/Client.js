@@ -18,7 +18,7 @@ const Client = {
             return Math.random() - 0.5;
         }).slice(0, pkSize);
 
-        list.sort(function(a, b){return a > b ? 1 : -1})
+        list.sort(function(a, b){ return a > b ? 1 : -1} )
         return list;
     }
 }
