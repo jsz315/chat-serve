@@ -111,6 +111,16 @@ io.on('connection', socket=>{
         }
     })
 
+    socket.on(Message.TYPE_CHOOSE_ANSWER, obj=>{
+        var room = RoomManager.getInstance().getRoomBySocket(socket);
+        if(room){
+            room.send(Message.TYPE_CHOOSE_ANSWER, {
+                player: Client.getInfoBySocket(socket),
+                obj: obj
+            });
+        }
+    })
+
     socket.on('disconnect', ()=>{
         console.log('connect disconnect');
         var room = RoomManager.getInstance().getRoomBySocket(socket);

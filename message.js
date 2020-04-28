@@ -5,7 +5,8 @@ const Message = {
     TYPE_WAIT_MATCH: 'wait match',
     TYPE_END_MATCH: 'end match',
     TYPE_EXIT_MATCH: 'exit match',
-    TYPE_LIST_ID: 'list id'
+    TYPE_LIST_ID: 'list id',
+    TYPE_CHOOSE_ANSWER: 'choose answer',
 }
 
 // export const TYPE_LOGIN: string = 'login';
