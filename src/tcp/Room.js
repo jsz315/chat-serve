@@ -25,9 +25,11 @@ class Room{
         return this.players.findIndex(n => n == socket) != -1;
     }
 
-    send(type, data){
+    send(type, msg){
         this.players.forEach(n => {
-            n.emit(type, data);
+            // n.emit(type, data);
+            n.send(JSON.stringify({type, msg, players: this.getInfo()}));
+            // n.send({type, data});
         })
     }
 

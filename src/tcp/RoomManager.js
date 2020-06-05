@@ -28,7 +28,9 @@ class RoomManager{
         if(m != -1){
             return this.rooms[m];
         }
-        return null;
+        m = this.getEmptyRoom(socket);
+        m.add(socket);
+        return m;
     }
 
     removeRoom(room){
