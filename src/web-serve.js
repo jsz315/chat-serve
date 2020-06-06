@@ -26,20 +26,27 @@ ws.on('connection', (client)=>{
     // console.log(e);
     var room = RoomManager.getInstance().getRoomBySocket(client);
     client.on("message", (data)=>{
+        console.log(data);
         var obj = JSON.parse(data);
-        if(obj.type == "login"){
+        if(obj.type == Message.TYPE_LOGIN){
             client.nickName = obj.msg;
-            room.send("message", "登录成功");
+            room.send(Message.TYPE_MESSAGE, "登录成功");
+            if(room.checkReady()){
+                room.send(Message.TYPE_END_MATCH, room.getInfo());
+            }
+            else{
+                room.send(Message.TYPE_WAIT_MATCH, room.getInfo());
+            }
         }
-        else if(obj.type == "message"){
-            room.send("message", obj.msg);
+        else if(obj.type == Message.TYPE_MESSAGE){
+            room.send(Message.TYPE_MESSAGE, obj.msg);
         }
     })
 
     client.on('close', ()=>{
         console.log('disconnected');
         room.remove(client);
-        room.send("quit", client.nickName + "退出");
+        room.send(Message.TYPE_QUIT, client.nickName + "退出");
     });
 })
 

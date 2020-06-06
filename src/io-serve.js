@@ -1,8 +1,8 @@
 
-const {Message} = require('./message')
-const Client = require('./src/core/Client')
-const port = 8899;
-const RoomManager = require('./src/core/RoomManager.js');
+const {Message} = require('./tcp/message')
+const Client = require('./tcp/Client')
+const port = 5566;
+const RoomManager = require('./tcp/RoomManager.js');
 var io;
 
 init();

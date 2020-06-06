@@ -16,7 +16,7 @@ class Room{
 
     remove(socket){
         var m = this.players.findIndex(n => n == socket);
-        if(m == -1){
+        if(m != -1){
             this.players.splice(m, 1);
         }
     }
@@ -25,10 +25,13 @@ class Room{
         return this.players.findIndex(n => n == socket) != -1;
     }
 
-    send(type, msg){
+    send(type, data){
         this.players.forEach(n => {
+            // n.emit(type, data)
             // n.emit(type, data);
-            n.send(JSON.stringify({type, msg, players: this.getInfo()}));
+            if(n.readyState == 1){
+                n.send(JSON.stringify({type, msg: data, players: this.getInfo()}));
+            }
             // n.send({type, data});
         })
     }
