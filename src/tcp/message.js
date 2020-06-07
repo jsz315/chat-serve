@@ -32,6 +32,7 @@ const Message = {
     TYPE_QUIT: 'quit',
     TYPE_LIST_ID: 'list id',
     TYPE_CHOOSE_ANSWER: 'choose answer',
+    TYPE_PING: 'ping'
 }
 
 module.exports = {

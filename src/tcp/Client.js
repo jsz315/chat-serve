@@ -1,5 +1,8 @@
 const Client = {
     getInfoBySocket: function(socket){
+        if(!socket){
+            return {};
+        }
         return {
             id: socket.id,
             nickName: socket.nickName,
